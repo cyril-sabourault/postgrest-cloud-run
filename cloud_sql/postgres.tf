@@ -17,6 +17,11 @@ resource "google_sql_database_instance" "postgrest" {
   }
 }
 
+resource "google_sql_database" "postgrest" {
+  name     = var.database_name
+  instance = google_sql_database_instance.postgrest.name
+}
+
 resource "random_password" "postgrest_password" {
   length           = 16
   special          = true

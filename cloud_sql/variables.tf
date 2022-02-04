@@ -32,3 +32,7 @@ variable "user_name" {
 variable "user_host" {
   default = ""
 }
+
+variable "database_name" {
+  default = "postgrest"
+}

@@ -5,7 +5,7 @@
         "title": "PostgREST API",
         "description": "standard public schema"
     },
-    "host": "postgrest-e4c411c0-uanwpkxudq-ew.a.run.app",
+    "host": "postgrest-ew.a.run.app",
     "basePath": "/",
     "schemes": [
         "https"
@@ -38,12 +38,18 @@
                 }
             }
         },
-        "/settings": {
+        "/Category": {
             "get": {
                 "tags": [
-                    "settings"
+                    "Category"
                 ],
                 "parameters": [
+                    {
+                        "$ref": "#/parameters/rowFilter.Category.id"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Category.name"
+                    },
                     {
                         "$ref": "#/parameters/select"
                     },
@@ -70,7 +76,7 @@
                     "200": {
                         "schema": {
                             "items": {
-                                "$ref": "#/definitions/settings"
+                                "$ref": "#/definitions/Category"
                             },
                             "type": "array"
                         },
@@ -83,11 +89,11 @@
             },
             "post": {
                 "tags": [
-                    "settings"
+                    "Category"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/body.settings"
+                        "$ref": "#/parameters/body.Category"
                     },
                     {
                         "$ref": "#/parameters/select"
@@ -104,9 +110,15 @@
             },
             "delete": {
                 "tags": [
-                    "settings"
+                    "Category"
                 ],
                 "parameters": [
+                    {
+                        "$ref": "#/parameters/rowFilter.Category.id"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Category.name"
+                    },
                     {
                         "$ref": "#/parameters/preferReturn"
                     }
@@ -119,11 +131,607 @@
             },
             "patch": {
                 "tags": [
-                    "settings"
+                    "Category"
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/body.settings"
+                        "$ref": "#/parameters/rowFilter.Category.id"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Category.name"
+                    },
+                    {
+                        "$ref": "#/parameters/body.Category"
+                    },
+                    {
+                        "$ref": "#/parameters/preferReturn"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    }
+                }
+            }
+        },
+        "/Order": {
+            "get": {
+                "tags": [
+                    "Order"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/rowFilter.Order.id"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Order.petid"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Order.quantity"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Order.shipdate"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Order.status"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Order.complete"
+                    },
+                    {
+                        "$ref": "#/parameters/select"
+                    },
+                    {
+                        "$ref": "#/parameters/order"
+                    },
+                    {
+                        "$ref": "#/parameters/range"
+                    },
+                    {
+                        "$ref": "#/parameters/rangeUnit"
+                    },
+                    {
+                        "$ref": "#/parameters/offset"
+                    },
+                    {
+                        "$ref": "#/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/parameters/preferCount"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Order"
+                            },
+                            "type": "array"
+                        },
+                        "description": "OK"
+                    },
+                    "206": {
+                        "description": "Partial Content"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Order"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/body.Order"
+                    },
+                    {
+                        "$ref": "#/parameters/select"
+                    },
+                    {
+                        "$ref": "#/parameters/preferReturn"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Order"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/rowFilter.Order.id"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Order.petid"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Order.quantity"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Order.shipdate"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Order.status"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Order.complete"
+                    },
+                    {
+                        "$ref": "#/parameters/preferReturn"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Order"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/rowFilter.Order.id"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Order.petid"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Order.quantity"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Order.shipdate"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Order.status"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Order.complete"
+                    },
+                    {
+                        "$ref": "#/parameters/body.Order"
+                    },
+                    {
+                        "$ref": "#/parameters/preferReturn"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    }
+                }
+            }
+        },
+        "/Pet": {
+            "get": {
+                "tags": [
+                    "Pet"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/rowFilter.Pet.id"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Pet.categoryid"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Pet.name"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Pet.photourls"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Pet.tagid"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Pet.status"
+                    },
+                    {
+                        "$ref": "#/parameters/select"
+                    },
+                    {
+                        "$ref": "#/parameters/order"
+                    },
+                    {
+                        "$ref": "#/parameters/range"
+                    },
+                    {
+                        "$ref": "#/parameters/rangeUnit"
+                    },
+                    {
+                        "$ref": "#/parameters/offset"
+                    },
+                    {
+                        "$ref": "#/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/parameters/preferCount"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Pet"
+                            },
+                            "type": "array"
+                        },
+                        "description": "OK"
+                    },
+                    "206": {
+                        "description": "Partial Content"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Pet"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/body.Pet"
+                    },
+                    {
+                        "$ref": "#/parameters/select"
+                    },
+                    {
+                        "$ref": "#/parameters/preferReturn"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Pet"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/rowFilter.Pet.id"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Pet.categoryid"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Pet.name"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Pet.photourls"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Pet.tagid"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Pet.status"
+                    },
+                    {
+                        "$ref": "#/parameters/preferReturn"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Pet"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/rowFilter.Pet.id"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Pet.categoryid"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Pet.name"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Pet.photourls"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Pet.tagid"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Pet.status"
+                    },
+                    {
+                        "$ref": "#/parameters/body.Pet"
+                    },
+                    {
+                        "$ref": "#/parameters/preferReturn"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    }
+                }
+            }
+        },
+        "/Tag": {
+            "get": {
+                "tags": [
+                    "Tag"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/rowFilter.Tag.id"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Tag.name"
+                    },
+                    {
+                        "$ref": "#/parameters/select"
+                    },
+                    {
+                        "$ref": "#/parameters/order"
+                    },
+                    {
+                        "$ref": "#/parameters/range"
+                    },
+                    {
+                        "$ref": "#/parameters/rangeUnit"
+                    },
+                    {
+                        "$ref": "#/parameters/offset"
+                    },
+                    {
+                        "$ref": "#/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/parameters/preferCount"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/Tag"
+                            },
+                            "type": "array"
+                        },
+                        "description": "OK"
+                    },
+                    "206": {
+                        "description": "Partial Content"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Tag"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/body.Tag"
+                    },
+                    {
+                        "$ref": "#/parameters/select"
+                    },
+                    {
+                        "$ref": "#/parameters/preferReturn"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Tag"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/rowFilter.Tag.id"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Tag.name"
+                    },
+                    {
+                        "$ref": "#/parameters/preferReturn"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Tag"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/rowFilter.Tag.id"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.Tag.name"
+                    },
+                    {
+                        "$ref": "#/parameters/body.Tag"
+                    },
+                    {
+                        "$ref": "#/parameters/preferReturn"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    }
+                }
+            }
+        },
+        "/User": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/rowFilter.User.id"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.username"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.password"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.firstname"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.lastname"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.email"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.phone"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.status"
+                    },
+                    {
+                        "$ref": "#/parameters/select"
+                    },
+                    {
+                        "$ref": "#/parameters/order"
+                    },
+                    {
+                        "$ref": "#/parameters/range"
+                    },
+                    {
+                        "$ref": "#/parameters/rangeUnit"
+                    },
+                    {
+                        "$ref": "#/parameters/offset"
+                    },
+                    {
+                        "$ref": "#/parameters/limit"
+                    },
+                    {
+                        "$ref": "#/parameters/preferCount"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/User"
+                            },
+                            "type": "array"
+                        },
+                        "description": "OK"
+                    },
+                    "206": {
+                        "description": "Partial Content"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/body.User"
+                    },
+                    {
+                        "$ref": "#/parameters/select"
+                    },
+                    {
+                        "$ref": "#/parameters/preferReturn"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/rowFilter.User.id"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.username"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.password"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.firstname"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.lastname"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.email"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.phone"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.status"
+                    },
+                    {
+                        "$ref": "#/parameters/preferReturn"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "User"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/rowFilter.User.id"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.username"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.password"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.firstname"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.lastname"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.email"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.phone"
+                    },
+                    {
+                        "$ref": "#/parameters/rowFilter.User.status"
+                    },
+                    {
+                        "$ref": "#/parameters/body.User"
                     },
                     {
                         "$ref": "#/parameters/preferReturn"
@@ -138,7 +746,163 @@
         }
     },
     "definitions": {
-        "settings": {
+        "Category": {
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "format": "integer",
+                    "type": "integer",
+                    "description": "Note:\nThis is a Primary Key.<pk/>"
+                },
+                "name": {
+                    "format": "character varying",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Order": {
+            "required": [
+                "id",
+                "petid",
+                "quantity"
+            ],
+            "properties": {
+                "id": {
+                    "format": "integer",
+                    "type": "integer",
+                    "description": "Note:\nThis is a Primary Key.<pk/>"
+                },
+                "petid": {
+                    "format": "integer",
+                    "type": "integer",
+                    "description": "Note:\nThis is a Foreign Key to `Pet.id`.<fk table='Pet' column='id'/>"
+                },
+                "quantity": {
+                    "format": "integer",
+                    "type": "integer"
+                },
+                "shipdate": {
+                    "format": "date",
+                    "type": "string"
+                },
+                "status": {
+                    "format": "character varying",
+                    "type": "string"
+                },
+                "complete": {
+                    "default": "false",
+                    "format": "character varying",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Pet": {
+            "required": [
+                "id",
+                "categoryid",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "format": "integer",
+                    "type": "integer",
+                    "description": "Note:\nThis is a Primary Key.<pk/>"
+                },
+                "categoryid": {
+                    "format": "integer",
+                    "type": "integer",
+                    "description": "Note:\nThis is a Foreign Key to `Category.id`.<fk table='Category' column='id'/>"
+                },
+                "name": {
+                    "format": "character varying",
+                    "type": "string"
+                },
+                "photourls": {
+                    "format": "character varying",
+                    "type": "string"
+                },
+                "tagid": {
+                    "format": "integer",
+                    "type": "integer",
+                    "description": "Note:\nThis is a Foreign Key to `Tag.id`.<fk table='Tag' column='id'/>"
+                },
+                "status": {
+                    "format": "character varying",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "Tag": {
+            "required": [
+                "id",
+                "name"
+            ],
+            "properties": {
+                "id": {
+                    "format": "integer",
+                    "type": "integer",
+                    "description": "Note:\nThis is a Primary Key.<pk/>"
+                },
+                "name": {
+                    "maxLength": 10,
+                    "format": "character varying",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "User": {
+            "required": [
+                "id",
+                "username",
+                "password",
+                "firstname",
+                "lastname",
+                "email",
+                "phone"
+            ],
+            "properties": {
+                "id": {
+                    "format": "integer",
+                    "type": "integer",
+                    "description": "Note:\nThis is a Primary Key.<pk/>"
+                },
+                "username": {
+                    "format": "character varying",
+                    "type": "string"
+                },
+                "password": {
+                    "format": "character varying",
+                    "type": "string"
+                },
+                "firstname": {
+                    "format": "character varying",
+                    "type": "string"
+                },
+                "lastname": {
+                    "format": "character varying",
+                    "type": "string"
+                },
+                "email": {
+                    "format": "character varying",
+                    "type": "string"
+                },
+                "phone": {
+                    "format": "character varying",
+                    "type": "string"
+                },
+                "status": {
+                    "default": 1,
+                    "format": "integer",
+                    "type": "integer"
+                }
+            },
             "type": "object"
         }
     },
@@ -225,14 +989,218 @@
             "in": "query",
             "type": "string"
         },
-        "body.settings": {
-            "name": "settings",
-            "description": "settings",
+        "body.Category": {
+            "name": "Category",
+            "description": "Category",
             "required": false,
             "schema": {
-                "$ref": "#/definitions/settings"
+                "$ref": "#/definitions/Category"
             },
             "in": "body"
+        },
+        "rowFilter.Category.id": {
+            "name": "id",
+            "required": false,
+            "format": "integer",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.Category.name": {
+            "name": "name",
+            "required": false,
+            "format": "character varying",
+            "in": "query",
+            "type": "string"
+        },
+        "body.Order": {
+            "name": "Order",
+            "description": "Order",
+            "required": false,
+            "schema": {
+                "$ref": "#/definitions/Order"
+            },
+            "in": "body"
+        },
+        "rowFilter.Order.id": {
+            "name": "id",
+            "required": false,
+            "format": "integer",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.Order.petid": {
+            "name": "petid",
+            "required": false,
+            "format": "integer",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.Order.quantity": {
+            "name": "quantity",
+            "required": false,
+            "format": "integer",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.Order.shipdate": {
+            "name": "shipdate",
+            "required": false,
+            "format": "date",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.Order.status": {
+            "name": "status",
+            "required": false,
+            "format": "character varying",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.Order.complete": {
+            "name": "complete",
+            "required": false,
+            "format": "character varying",
+            "in": "query",
+            "type": "string"
+        },
+        "body.Pet": {
+            "name": "Pet",
+            "description": "Pet",
+            "required": false,
+            "schema": {
+                "$ref": "#/definitions/Pet"
+            },
+            "in": "body"
+        },
+        "rowFilter.Pet.id": {
+            "name": "id",
+            "required": false,
+            "format": "integer",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.Pet.categoryid": {
+            "name": "categoryid",
+            "required": false,
+            "format": "integer",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.Pet.name": {
+            "name": "name",
+            "required": false,
+            "format": "character varying",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.Pet.photourls": {
+            "name": "photourls",
+            "required": false,
+            "format": "character varying",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.Pet.tagid": {
+            "name": "tagid",
+            "required": false,
+            "format": "integer",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.Pet.status": {
+            "name": "status",
+            "required": false,
+            "format": "character varying",
+            "in": "query",
+            "type": "string"
+        },
+        "body.Tag": {
+            "name": "Tag",
+            "description": "Tag",
+            "required": false,
+            "schema": {
+                "$ref": "#/definitions/Tag"
+            },
+            "in": "body"
+        },
+        "rowFilter.Tag.id": {
+            "name": "id",
+            "required": false,
+            "format": "integer",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.Tag.name": {
+            "name": "name",
+            "required": false,
+            "format": "character varying",
+            "in": "query",
+            "type": "string"
+        },
+        "body.User": {
+            "name": "User",
+            "description": "User",
+            "required": false,
+            "schema": {
+                "$ref": "#/definitions/User"
+            },
+            "in": "body"
+        },
+        "rowFilter.User.id": {
+            "name": "id",
+            "required": false,
+            "format": "integer",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.User.username": {
+            "name": "username",
+            "required": false,
+            "format": "character varying",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.User.password": {
+            "name": "password",
+            "required": false,
+            "format": "character varying",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.User.firstname": {
+            "name": "firstname",
+            "required": false,
+            "format": "character varying",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.User.lastname": {
+            "name": "lastname",
+            "required": false,
+            "format": "character varying",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.User.email": {
+            "name": "email",
+            "required": false,
+            "format": "character varying",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.User.phone": {
+            "name": "phone",
+            "required": false,
+            "format": "character varying",
+            "in": "query",
+            "type": "string"
+        },
+        "rowFilter.User.status": {
+            "name": "status",
+            "required": false,
+            "format": "integer",
+            "in": "query",
+            "type": "string"
         }
     },
     "externalDocs": {
