@@ -26,7 +26,7 @@ resource "google_cloud_run_service" "postgrest" {
         env {
           name = "PGRST_DB_URI"
           # value = "postgres://postgres:${var.sql_db_password_secret_name}@/postgres?host=/cloudsql/${var.sql_connection_name}"
-          value = "postgres://postgres:${var.sql_db_password}@/postgres?host=/cloudsql/${var.sql_connection_name}"
+          value = "postgres://${var.sql_db_username}:${var.sql_db_password}@/${var.sql_db_table}?host=/cloudsql/${var.sql_connection_name}"
         }
         env {
           name  = "PGRST_DB_SCHEMA"
@@ -34,7 +34,7 @@ resource "google_cloud_run_service" "postgrest" {
         }
         env {
           name  = "PGRST_DB_ANON_ROLE"
-          value = "postgres"
+          value = "${var.sql_db_username}"
         }
       }
     }
