@@ -1,6 +1,10 @@
 output "db_user_name" {
   value       = google_sql_user.postgres_user.name
-  description = "db username"
+  description = "db username (default: postgrest)"
+}
+output "db_database_name" {
+  value       = var.database_name
+  description = "db database name (default: postgrest)"
 }
 
 output "db_password_secret_name" {
