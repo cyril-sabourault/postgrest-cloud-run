@@ -21,6 +21,10 @@ variable "sql_db_username" {
   default = "postgres"
 }
 
+variable "sql_db_table" {
+  default = "postgres"
+}
+
 variable "sql_db_password_secret_name" {
   default = "DB_PASSWORD"
 }
