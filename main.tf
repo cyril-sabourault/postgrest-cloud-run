@@ -1,6 +1,6 @@
 variable "google_project_id" {
   type        = string
-  default     = "sandbox-csabourault"
+  default     = ""
   description = "The GCP project id to deploy to"
 }
 
