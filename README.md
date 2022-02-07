@@ -60,8 +60,8 @@ Exemple generated openapi spec:
 │   └── variables.tf
 │
 └── main.tf
-└── example.tfvars
-├── [backend.tf]
+├── example.tfvars
+└── [backend.tf]
 ```
 
 
@@ -96,15 +96,10 @@ Set the _`deletion_protection`_ field in `cloud_sql/postgres.tf` to _`false`_ on
 
 
 <pre>
-  <style>
-    .ellipsis {color: #ffffff66;}
-    .add {color: green;}
-    .remove {color: red;}
-  </style>
   resource "google_sql_database_instance" "postgrest" {
-    &nbsp;&nbsp;<small class="ellipsis">(...)</small>
-    &nbsp;&nbsp;deletion_protection = <em class="remove">true</em> -> <em class="add">false</em>
-    &nbsp;&nbsp;<small class="ellipsis">(...)</small>
+    &nbsp;&nbsp;<small>(...)</small>
+    &nbsp;&nbsp;deletion_protection = <em>true</em> -> <em>false</em>
+    &nbsp;&nbsp;<small>(...)</small>
   }
 </pre>
 
