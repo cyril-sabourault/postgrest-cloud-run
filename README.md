@@ -60,7 +60,7 @@ Exemple generated openapi spec:
 │   └── variables.tf
 │
 └── main.tf
-├── example.tfvars
+├── terraform.tfvars
 └── [backend.tf]
 ```
 
@@ -71,14 +71,14 @@ Authenticate first using gcloud's ADC
 gcloud auth application-default login
 ```
 
-Fill in your own GCP project id in the `example.tfvars` file.  
+Fill in your own GCP project id in the `terraform.tfvars` file.  
 [Optionnaly, uncomment the `backend.tf` file and fill in your GCS bucket name if you want a remote state.]
 
 
 Deploy! 
 ```sh
 tf init
-tf plan -var-files=example.tfvars -out tfplan
+tf plan -var-files=terraform.tfvars -out tfplan
 
 # (the tf apply will start immediately,
 #+ you better review the tf plan output first)
@@ -106,7 +106,7 @@ Set the _`deletion_protection`_ field in `cloud_sql/postgres.tf` to _`false`_ on
 
 Apply the change
 ```sh
-tf apply -var-file=example.tfvars \
+tf apply -var-file=terraform.tfvars \
   -target module.postgrest_database.google_sql_database_instance.postgrest
 ```
 
