@@ -56,7 +56,7 @@ output "example" {
   value = join("", [
     "cloud_sql_proxy -instances=${module.postgrest_database.db_connection_name}=tcp:127.0.0.1:5432 2>/dev/null &\n",
     "export _DB_PASSWORD=$(gcloud secrets versions access latest --secret ${module.postgrest_database.db_password_secret_name})\n",
-    "sleep 1 && psql postgresql://${module.postgrest_database.db_user_name}:$_DB_PASSWORD@localhost:5432/${module.postgrest_database.db_database_name} < docs/petstore.sql",
+    "sleep 1 && psql postgresql://${module.postgrest_database.db_user_name}:$_DB_PASSWORD@localhost:5432/${module.postgrest_database.db_database_name} < docs/petstore.sql\n",
     "# killall cloud_sql_proxy"
   ])
 }
