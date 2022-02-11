@@ -5,14 +5,22 @@ resource "google_cloud_run_service" "postgrest" {
   template {
     metadata {
       annotations = {
-        "run.googleapis.com/cloudsql-instances" = var.sql_connection_name
+        "run.googleapis.com/cloudsql-instances" = var.sql_connection_name,
+        "autoscaling.knative.dev/maxScale"      = "100"
       }
     }
     spec {
+      service_account_name = data.google_compute_default_service_account.default_compute.email
+
       containers {
         image = "eu.gcr.io/${var.project_id}/postgrest"
+
+        ports {
+          container_port = 3000
+        }
+
         env {
-          name = "DB_PASSWORD"
+          name = "PGRST_DB_URI"
           value_from {
             secret_key_ref {
               name = var.sql_db_password_secret_name
@@ -20,21 +28,13 @@ resource "google_cloud_run_service" "postgrest" {
             }
           }
         }
-        ports {
-          container_port = 3000
-        }
-        env {
-          name = "PGRST_DB_URI"
-          # value = "postgres://postgres:${var.sql_db_password_secret_name}@/postgres?host=/cloudsql/${var.sql_connection_name}"
-          value = "postgres://${var.sql_db_username}:${var.sql_db_password}@/${var.sql_db_table}?host=/cloudsql/${var.sql_connection_name}"
-        }
         env {
           name  = "PGRST_DB_SCHEMA"
           value = "public"
         }
         env {
           name  = "PGRST_DB_ANON_ROLE"
-          value = "${var.sql_db_username}"
+          value = var.sql_db_username
         }
       }
     }
@@ -71,3 +71,4 @@ resource "google_cloud_run_service_iam_policy" "noauth" {
   policy_data = data.google_iam_policy.noauth.policy_data
 }
 
+data "google_compute_default_service_account" "default_compute" {}

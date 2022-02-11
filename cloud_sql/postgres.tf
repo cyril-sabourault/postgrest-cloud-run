@@ -38,6 +38,9 @@ resource "google_sql_user" "postgres_user" {
 module "secretmanager" {
   source = "../secret_manager"
 
-  secret_name  = format("%s-%s", "DB_PASSWORD", var.db_name_suffix)
-  secret_value = random_password.postgrest_password.result
+  secret_name = "PGRST_DB_URI"
+  secret_value = join("", [
+    "postgres://${google_sql_user.postgres_user.name}:${random_password.postgrest_password.result}",
+    "@/${var.database_name}?host=/cloudsql/${google_sql_database_instance.postgrest.connection_name}"
+  ])
 }
