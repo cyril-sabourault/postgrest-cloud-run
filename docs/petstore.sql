@@ -1,7 +1,14 @@
--- public."User" definition
+create sequence "user_seq";
+create sequence "tag_seq";
+create sequence "category_seq";
+create sequence "pet_seq";
+create sequence "order_seq";
+
+
+-- "User" definition
 -- Drop table
--- DROP TABLE public."User";
-CREATE TABLE public."User" (
+-- DROP TABLE "User";
+CREATE TABLE "User" (
     id int4 NOT NULL DEFAULT nextval('user_seq'::regclass),
     username varchar NOT NULL,
     "password" varchar NOT NULL,
@@ -18,26 +25,26 @@ CREATE TABLE public."User" (
         )
     )
 );
--- public."Tag" definition
+-- "Tag" definition
 -- Drop table
--- DROP TABLE public."Tag";
-CREATE TABLE public."Tag" (
+-- DROP TABLE "Tag";
+CREATE TABLE "Tag" (
     id int4 NOT NULL DEFAULT nextval('tag_seq'::regclass),
     "name" varchar(10) NOT NULL,
     CONSTRAINT "Tag_pkey" PRIMARY KEY (id)
 );
--- public."Category" definition
+-- "Category" definition
 -- Drop table
--- DROP TABLE public."Category";
-CREATE TABLE public."Category" (
+-- DROP TABLE "Category";
+CREATE TABLE "Category" (
     id int4 NOT NULL DEFAULT nextval('category_seq'::regclass),
     "name" varchar NOT NULL,
     CONSTRAINT "Category_pkey" PRIMARY KEY (id)
 );
--- public."Pet" definition
+-- "Pet" definition
 -- Drop table
--- DROP TABLE public."Pet";
-CREATE TABLE public."Pet" (
+-- DROP TABLE "Pet";
+CREATE TABLE "Pet" (
     id int4 NOT NULL DEFAULT nextval('pet_seq'::regclass),
     categoryid int4 NOT NULL,
     "name" varchar NOT NULL,
@@ -46,15 +53,15 @@ CREATE TABLE public."Pet" (
     status varchar NULL,
     CONSTRAINT "Pet_pkey" PRIMARY KEY (id)
 );
--- public."Pet" foreign keys
-ALTER TABLE public."Pet"
-ADD CONSTRAINT "Pet_p_categoryid_fkey" FOREIGN KEY (categoryid) REFERENCES public."Category"(id);
-ALTER TABLE public."Pet"
-ADD CONSTRAINT "Pet_p_tagid_fkey" FOREIGN KEY (tagid) REFERENCES public."Tag"(id);
--- public."Order" definition
+-- "Pet" foreign keys
+ALTER TABLE "Pet"
+ADD CONSTRAINT "Pet_p_categoryid_fkey" FOREIGN KEY (categoryid) REFERENCES "Category"(id);
+ALTER TABLE "Pet"
+ADD CONSTRAINT "Pet_p_tagid_fkey" FOREIGN KEY (tagid) REFERENCES "Tag"(id);
+-- "Order" definition
 -- Drop table
--- DROP TABLE public."Order";
-CREATE TABLE public."Order" (
+-- DROP TABLE "Order";
+CREATE TABLE "Order" (
     id int4 NOT NULL DEFAULT nextval('order_seq'::regclass),
     petid int4 NOT NULL,
     quantity int4 NOT NULL,
@@ -69,11 +76,11 @@ CREATE TABLE public."Order" (
     ),
     CONSTRAINT order_pkey PRIMARY KEY (id)
 );
--- public."Order" foreign keys
-ALTER TABLE public."Order"
-ADD CONSTRAINT order_o_petid_fkey FOREIGN KEY (petid) REFERENCES public."Pet"(id);
+-- "Order" foreign keys
+ALTER TABLE "Order"
+ADD CONSTRAINT order_o_petid_fkey FOREIGN KEY (petid) REFERENCES "Pet"(id);
 ---
-INSERT INTO public."User" (
+INSERT INTO "User" (
         username,
         "password",
         firstname,
@@ -91,16 +98,16 @@ VALUES (
         '12345678909',
         1
     );
-INSERT INTO public."Tag" ("name")
+INSERT INTO "Tag" ("name")
 VALUES ('cute'),
     ('handsome'),
     ('mighty');
-INSERT INTO public."Category" ("name")
+INSERT INTO "Category" ("name")
 VALUES ('kitten'),
     ('puppy'),
     ('tortoise');
-INSERT INTO public."Pet" (categoryid, "name", photourls, tagid, status)
+INSERT INTO "Pet" (categoryid, "name", photourls, tagid, status)
 VALUES (1, 'rouky', NULL, 1, 'unsold'),
     (3, 'thicky', NULL, 2, 'reserved');
-INSERT INTO public."Order" (petid, quantity, shipdate, status, complete)
+INSERT INTO "Order" (petid, quantity, shipdate, status, complete)
 VALUES (2, 1, '2022-01-01', 'undone', 'false');
